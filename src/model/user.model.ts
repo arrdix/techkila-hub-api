@@ -15,9 +15,11 @@ export type RegisterUserRequest = {
 }
 
 export function toUserResponse(user: User): UserResponse {
+    const { name, username, role } = user
+
     return {
-        name: user.name,
-        username: user.username,
-        role: user.role,
+        name,
+        username,
+        role,
     }
 }

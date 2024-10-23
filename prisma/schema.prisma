@@ -20,6 +20,32 @@ enum Role {
   Guest
 }
 
+enum ProductType {
+  Mesin_Absensi
+  Mesin_Access_Control
+  Barcode_Scanner
+  Door_Closer
+  Alat_Kasir
+  CCTV
+  Printer
+  Router
+  Smartlock
+  Accessories
+}
+
+enum Branch {
+  Bandung
+  Jakarta
+}
+
+enum PurchaseOrderCategory {
+  Operations
+  Inventory
+  Ads
+  Shipping
+  Salary
+}
+
 model User {
   id       String @id @default(uuid())
   username String @unique
@@ -29,4 +55,29 @@ model User {
   role     Role
 
   @@map("users")
+}
+
+model Product {
+  id     String      @id @default(uuid())
+  name   String
+  type   ProductType
+  price  Int
+  qty    Int
+  amount Int
+
+  @@map("products")
+}
+
+model PurchaseOrder {
+  id        String                @id @default(uuid())
+  no        String                @unique
+  item      String
+  price     Int
+  qty       Int                   @default(1)
+  branch    Branch
+  note      String?
+  category  PurchaseOrderCategory
+  createdAt DateTime              @default(now())
+
+  @@map("purchaseOrders")
 }

@@ -6,7 +6,7 @@ export class PurchaseOrderValidation {
         item: z.string().min(1),
         price: z.number(),
         productId: z.string().optional(),
-        qry: z.number().optional(),
+        qty: z.number().optional(),
         branch: z.enum(Object.values(Branch) as [Branch, ...Branch[]]),
         category: z.enum(
             Object.values(PurchaseOrderCategory) as [
